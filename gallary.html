@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IronCore Fitness | Gallery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+*{font-family:Arial;box-sizing:border-box;}
+
+body{
+margin:0;
+display:flex;
+background:#111;
+color:white;
+}
+
+.sidebar{
+width:220px;
+background:#1c1c1c;
+height:100vh;
+padding:20px;
+display:flex;
+flex-direction:column;
+}
+
+.sidebar h2{
+color:#f5c518;
+text-align:center;
+}
+
+.sidebar a{
+text-decoration:none;
+color:white;
+margin:10px 0;
+}
+
+.sidebar a:hover{
+color:#f5c518;
+}
+
+.main{
+flex:1;
+padding:40px;
+}
+
+h1{
+color:#f5c518;
+margin-bottom:10px;
+}
+
+.intro{
+max-width:700px;
+margin-bottom:30px;
+line-height:1.6;
+}
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.photo-card{
+background:#1c1c1c;
+border-radius:10px;
+overflow:hidden;
+transition:0.3s;
+}
+
+.photo-card:hover{
+transform:scale(1.03);
+box-shadow:0 0 15px rgba(245,197,24,0.4);
+}
+
+.photo-card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.photo-info{
+padding:15px;
+}
+
+.photo-info h3{
+margin:0;
+color:#f5c518;
+}
+
+.photo-info p{
+font-size:14px;
+margin-top:8px;
+color:#ccc;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>IronCore</h2>
+
+<a href="indax.html">🏠 Home</a>
+<a href="classes.html">🏋️ Classes</a>
+<a href="trainers.html">👤 Trainers</a>
+<a href="membership.html">💳 Membership</a>
+<a href="gallary.html">📸 Gallery</a>
+<a href="contect.html">📞 Contact</a>
+<a href="accunt.html">👤 Account</a>
+
+<a onclick="logout()">🚪 Logout</a>
+
+</div>
+
+<div class="main">
+
+<h1>Gym Gallery</h1>
+
+<p class="intro">
+Take a look inside IronCore Fitness. Our gallery showcases the gym environment,
+state-of-the-art equipment, training sessions, and the dedication of our fitness community.
+See where strength is built, goals are achieved, and motivation never stops.
+</p>
+
+<div class="gallery-grid">
+
+<div class="photo-card">
+<img src="mimasour/strengthtraining.jpeg">
+<div class="photo-info">
+<h3>Strength Training Area</h3>
+<p>Our fully equipped weight training section designed for building muscle and improving strength.</p>
+</div>
+</div>
+
+<div class="photo-card">
+<img src="mimasour/cardio_zone.jpeg">
+<div class="photo-info">
+<h3>Cardio Zone</h3>
+<p>Treadmills, bikes, and cardio equipment to help improve endurance and heart health.</p>
+</div>
+</div>
+
+<div class="photo-card">
+<img src="mimasour/group_training.jpeg">
+<div class="photo-info">
+<h3>Group Training</h3>
+<p>Members participate in energetic group workout classes guided by experienced trainers.</p>
+</div>
+</div>
+
+<div class="photo-card">
+<img src="mimasour/coaching.jpeg">
+<div class="photo-info">
+<h3>Personal Coaching</h3>
+<p>Professional trainers working closely with members to achieve their fitness goals.</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+/* LOGIN PROTECTION */
+
+if(localStorage.getItem("fitnessLoggedIn") !== "true"){
+window.location.href="fitnesslog.html";
+}
+
+/* DISPLAY USER */
+
+document.getElementById("welcomeUser").innerText =
+"Logged in as: " + localStorage.getItem("fitnessEmail");
+
+
+/* LOGOUT */
+
+function logout(){
+localStorage.removeItem("fitnessLoggedIn");
+window.location.href="fitnesslog.html";
+}
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IronCore Fitness | Classes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
+
+body {
+    margin:0;
+    display:flex;
+    background:#111;
+    color:white;
+    transition:0.3s;
+}
+
+body.light {
+    background:#f4f4f4;
+    color:#111;
+}
+
+.sidebar {
+    width:220px;
+    background:#1c1c1c;
+    height:100vh;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+}
+
+body.light .sidebar {
+    background:white;
+}
+
+.sidebar h2 {
+    color:#f5c518;
+    text-align:center;
+}
+
+.sidebar a {
+    color:inherit;
+    text-decoration:none;
+    margin:12px 0;
+    display:block;
+    cursor:pointer;
+}
+
+.sidebar a:hover {
+    color:#f5c518;
+}
+
+.main {
+    flex:1;
+    padding:40px;
+}
+
+.class-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card {
+    background:#1c1c1c;
+    padding:20px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+body.light .card {
+    background:white;
+}
+
+.card h3 {
+    color:#f5c518;
+}
+
+button {
+    padding:8px 15px;
+    background:#f5c518;
+    border:none;
+    color:white;
+    cursor:pointer;
+    border-radius:5px;
+    margin-top:10px;
+}
+
+button:hover {
+    opacity:0.9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>IronCore</h2>
+    <a href="indax.html">🏠 Home</a>
+    <a href="classes.html">🏋️ Classes</a>
+    <a href="trainers.html">👤 Trainers</a>
+    <a href="membership.html">💳 Membership</a>
+    <a href="gallary.html">📸 Gallery</a>
+    <a href="about.html">ℹ About</a>
+    <a href="contect.html">📞 Contact</a>
+    <a href="accunt.html">👤 Account</a>
+    <a onclick="logout()">🚪 Logout</a>
+   
+</div>
+
+<div class="main">
+    <h1>Workout Classes</h1>
+
+    <div class="class-grid">
+
+        <div class="card">
+            <h3>🔥 HIIT Training</h3>
+            <p>High intensity interval training for fat burn and endurance.</p>
+            <p><strong>$15 / session</strong></p>
+            <button onclick="bookClass('HIIT Training')">Book Now</button>
+        </div>
+
+        <div class="card">
+            <h3>💪 Strength Training</h3>
+            <p>Build muscle and increase strength with guided workouts.</p>
+            <p><strong>$18 / session</strong></p>
+            <button onclick="bookClass('Strength Training')">Book Now</button>
+        </div>
+
+        <div class="card">
+            <h3>🧘 Yoga Flow</h3>
+            <p>Improve flexibility and relaxation with guided yoga sessions.</p>
+            <p><strong>$12 / session</strong></p>
+            <button onclick="bookClass('Yoga Flow')">Book Now</button>
+        </div>
+
+        <div class="card">
+            <h3>🏃 Cardio Blast</h3>
+            <p>Boost stamina and heart health with intense cardio workouts.</p>
+            <p><strong>$14 / session</strong></p>
+            <button onclick="bookClass('Cardio Blast')">Book Now</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+// PROTECT PAGE
+if(localStorage.getItem("fitnessLoggedIn") !== "true"){
+    window.location.href="fitnesslog.html";
+}
+
+function logout(){
+    localStorage.removeItem("fitnessLoggedIn");
+    window.location.href="fitnesslog.html";
+}
+
+function bookClass(className){
+    alert("You booked: " + className + " 💪");
+}
+</script>
+
+</body>
+</html>

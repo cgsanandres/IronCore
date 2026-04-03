@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IronCore Fitness | Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
+
+body {
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#111;
+    transition:0.3s;
+    color:white;
+}
+
+body.light {
+    background:#f4f4f4;
+    color:#111;
+}
+
+.container {
+    background:#1c1c1c;
+    padding:40px;
+    width:350px;
+    border-radius:10px;
+    box-shadow:0 0 20px rgba(255,0,0,0.3);
+    transition:0.3s;
+}
+
+body.light .container {
+    background:white;
+    box-shadow:0 0 20px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align:center;
+    color:#f5c518;
+}
+
+input {
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:5px;
+}
+
+button {
+    width:100%;
+    padding:10px;
+    background:#f5c518;
+    border:none;
+    color:white;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+button:hover {
+    opacity:0.9;
+}
+
+.toggle {
+    margin-top:10px;
+    text-align:center;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.link {
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
+}
+
+.link a {
+    color:#f5c518;
+    text-decoration:none;
+}
+
+.error {
+    color:red;
+    font-size:13px;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>IronCore</h1>
+    <h3 style="text-align:center;">Member Login</h3>
+
+    <input type="email" id="email" placeholder="Enter Email">
+    <input type="password" id="password" placeholder="Enter Password">
+
+    <button onclick="login()">Login</button>
+
+    <div class="error" id="errorMsg"></div>
+
+    <div class="link">
+        Don't have an account? 
+        <a href="createfitnessacc.html">Create Account</a>
+    </div>
+
+    <div class="toggle" onclick="toggleTheme()">
+        🌗 Toggle Dark/Light Mode
+    </div>
+</div>
+
+<script>
+// Load saved theme
+if(localStorage.getItem("theme") === "light"){
+    document.body.classList.add("light");
+}
+
+function toggleTheme(){
+    document.body.classList.toggle("light");
+    if(document.body.classList.contains("light")){
+        localStorage.setItem("theme","light");
+    } else {
+        localStorage.setItem("theme","dark");
+    }
+}
+
+function login(){
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+
+    var savedEmail = localStorage.getItem("fitnessEmail");
+    var savedPassword = localStorage.getItem("fitnessPassword");
+
+    if(email === "" || password === ""){
+        document.getElementById("errorMsg").innerText = "Please fill in all fields.";
+        return;
+    }
+
+    if(email === savedEmail && password === savedPassword){
+        localStorage.setItem("fitnessLoggedIn","true");
+        window.location.href="indax.html";
+    } else {
+        document.getElementById("errorMsg").innerText = "Invalid email or password.";
+    }
+}
+</script>
+
+</body>
+</html>
+

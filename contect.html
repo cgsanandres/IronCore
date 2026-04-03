@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IronCore Fitness | Contact</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif;}
+
+body{
+margin:0;
+display:flex;
+background:#111;
+color:white;
+transition:0.3s;
+}
+
+body.light{
+background:#f4f4f4;
+color:#111;
+}
+
+.sidebar{
+width:220px;
+background:#1c1c1c;
+height:100vh;
+padding:20px;
+display:flex;
+flex-direction:column;
+}
+
+body.light .sidebar{
+background:white;
+}
+
+.sidebar h2{
+color:#f5c518;
+text-align:center;
+}
+
+.sidebar a{
+text-decoration:none;
+color:inherit;
+margin:12px 0;
+cursor:pointer;
+}
+
+.sidebar a:hover{
+color:#f5c518;
+}
+
+.main{
+flex:1;
+padding:40px;
+}
+
+.box{
+background:#1c1c1c;
+padding:30px;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+body.light .box{
+background:white;
+}
+
+input,textarea{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:none;
+}
+
+button{
+padding:10px 20px;
+background:#f5c518;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>IronCore</h2>
+<a href="indax.html">🏠 Home</a>
+<a href="classes.html">🏋️ Classes</a>
+<a href="trainers.html">👤 Trainers</a>
+<a href="membership.html">💳 Membership</a>
+<a href="gallery.html">📸 Gallery</a>
+<a href="about.html">ℹ About</a>
+<a href="contect.html">📞 Contact</a>
+<a href="accunt.html">👤 Account</a>
+<a onclick="logout()">🚪 Logout</a>
+
+</div>
+
+<div class="main">
+
+<h1>Contact Us</h1>
+
+<div class="box">
+<h3>📍 Location</h3>
+<p>IronCore Fitness Center</p>
+<p>123 Strength Avenue, Fitness City</p>
+
+<h3>📞 Phone</h3>
+<p>0912-345-6789</p>
+
+<h3>✉ Send Inquiry</h3>
+
+<textarea placeholder="Your message"></textarea>
+<button onclick="alert('Message sent! (Simulation)')">Submit</button>
+</div>
+
+</div>
+
+<script>
+if(localStorage.getItem("fitnessLoggedIn")!=="true"){
+window.location.href="fitnesslog.html";
+}
+
+
+function logout(){
+localStorage.removeItem("fitnessLoggedIn");
+window.location.href="fitnesslog.html";
+}
+</script>
+
+</body>
+</html>

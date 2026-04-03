@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IronCore Fitness | Membership</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+*{font-family:Arial;box-sizing:border-box;}
+
+body{
+margin:0;
+display:flex;
+background:#111;
+color:white;
+}
+
+.sidebar{
+width:220px;
+background:#1c1c1c;
+height:100vh;
+padding:20px;
+display:flex;
+flex-direction:column;
+}
+
+.sidebar h2{
+color:#f5c518;
+text-align:center;
+}
+
+.sidebar a{
+text-decoration:none;
+color:white;
+margin:10px 0;
+}
+
+.sidebar a:hover{
+color:#f5c518;
+}
+
+.main{
+flex:1;
+padding:40px;
+}
+
+h1{
+color:#f5c518;
+}
+
+.membership-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-top:30px;
+}
+
+.plan{
+background:#1c1c1c;
+padding:30px;
+border-radius:10px;
+text-align:center;
+transition:0.3s;
+}
+
+.plan:hover{
+transform:translateY(-5px);
+box-shadow:0 0 15px rgba(245,197,24,0.4);
+}
+
+.plan h3{
+color:#f5c518;
+margin-top:0;
+}
+
+.price{
+font-size:28px;
+margin:15px 0;
+}
+
+.plan ul{
+list-style:none;
+padding:0;
+}
+
+.plan li{
+margin:8px 0;
+}
+
+button{
+background:#f5c518;
+border:none;
+padding:10px 20px;
+border-radius:6px;
+cursor:pointer;
+margin-top:15px;
+font-weight:bold;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>IronCore</h2>
+
+<a href="indax.html">🏠 Home</a>
+<a href="classes.html">🏋️ Classes</a>
+<a href="trainers.html">👤 Trainers</a>
+<a href="membership.html">💳 Membership</a>
+<a href="gallary.html">📸 Gallery</a>
+<a href="about.html">ℹ About</a>
+<a href="contect.html">📞 Contact</a>
+<a href="accunt.html">👤 Account</a>
+
+<a onclick="logout()">🚪 Logout</a>
+
+</div>
+
+<div class="main">
+
+<h1>Membership Plans</h1>
+<p>Choose the plan that fits your fitness goals and start your IronCore journey.</p>
+
+<div class="membership-grid">
+
+<div class="plan">
+<h3>Basic</h3>
+<div class="price">₱999 / month</div>
+<ul>
+<li>Gym access</li>
+<li>Locker use</li>
+<li>Basic equipment</li>
+</ul>
+<button onclick="joinPlan('Basic equipment')">Join</button>
+</div>
+
+<div class="plan">
+<h3>Pro</h3>
+<div class="price">₱1,499 / month</div>
+<ul>
+<li>All gym equipment</li>
+<li>Group classes</li>
+<li>Fitness tracking</li>
+</ul>
+<button onclick="joinPlan('Pro')">Join</button>
+</div>
+
+<div class="plan">
+<h3>Elite</h3>
+<div class="price">₱2,199 / month</div>
+<ul>
+<li>Personal trainer</li>
+<li>All classes included</li>
+<li>Nutrition guidance</li>
+</ul>
+<button onclick="joinPlan('Elite')">Join</button>
+</div>
+
+</div>
+
+</div>
+
+<script>
+if(localStorage.getItem("fitnessLoggedIn")!=="true"){
+window.location.href="fitnesslog.html";
+}
+
+
+function logout(){
+localStorage.removeItem("fitnessLoggedIn");
+window.location.href="fitnesslog.html";
+}
+
+function joinPlan(plan){
+alert("You selected the "+plan+" plan 💪");
+}
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
