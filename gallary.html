@@ -1,189 +1,250 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>IronCore Fitness | Gallery</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IronCore Fitness | Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cloudflare.com">
 
-<style>
+    <style>
+        :root {
+            --primary: #f5c518;
+            --bg-dark: #0a0a0a;
+            --card-bg: #161616;
+            --text-muted: #a0a0a0;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
 
-*{font-family:Arial;box-sizing:border-box;}
+        * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
 
-body{
-margin:0;
-display:flex;
-background:#111;
-color:white;
-}
+        body {
+            margin: 0;
+            display: flex;
+            background: var(--bg-dark);
+            color: white;
+            min-height: 100vh;
+        }
 
-.sidebar{
-width:220px;
-background:#1c1c1c;
-height:100vh;
-padding:20px;
-display:flex;
-flex-direction:column;
-}
+        /* SIDEBAR (Locked Consistency) */
+        .sidebar {
+            width: 240px;
+            background: #000;
+            height: 100vh;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            border-right: 1px solid #222;
+        }
 
-.sidebar h2{
-color:#f5c518;
-text-align:center;
-}
+        .sidebar h2 { color: var(--primary); text-align: center; letter-spacing: 2px; margin-bottom: 30px; }
 
-.sidebar a{
-text-decoration:none;
-color:white;
-margin:10px 0;
-}
+        .sidebar a {
+            color: #ddd;
+            text-decoration: none;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.sidebar a:hover{
-color:#f5c518;
-}
+        .sidebar a:hover, .sidebar a.active { background: var(--glass); color: var(--primary); padding-left: 20px; }
 
-.main{
-flex:1;
-padding:40px;
-}
+        /* MAIN CONTENT */
+        .main {
+            flex: 1;
+            margin-left: 240px;
+            padding: 40px;
+            max-width: 1200px;
+        }
 
-h1{
-color:#f5c518;
-margin-bottom:10px;
-}
+        /* GALLERY FILTER */
+        .gallery-filter {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
 
-.intro{
-max-width:700px;
-margin-bottom:30px;
-line-height:1.6;
-}
+        .filter-btn {
+            padding: 8px 20px;
+            background: var(--card-bg);
+            border: 1px solid #333;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
 
-.gallery-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
+        .filter-btn.active, .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
 
-.photo-card{
-background:#1c1c1c;
-border-radius:10px;
-overflow:hidden;
-transition:0.3s;
-}
+        /* GALLERY GRID */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
 
-.photo-card:hover{
-transform:scale(1.03);
-box-shadow:0 0 15px rgba(245,197,24,0.4);
-}
+        .photo-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-.photo-card img{
-width:100%;
-height:200px;
-object-fit:cover;
-}
+        .photo-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
 
-.photo-info{
-padding:15px;
-}
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: 0.5s;
+        }
 
-.photo-info h3{
-margin:0;
-color:#f5c518;
-}
+        .photo-card:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
 
-.photo-info p{
-font-size:14px;
-margin-top:8px;
-color:#ccc;
-}
+        .photo-info { padding: 20px; }
+        .photo-info h3 { margin: 0; color: var(--primary); font-size: 18px; }
+        .photo-info p { font-size: 14px; margin-top: 8px; color: #aaa; line-height: 1.4; }
 
-</style>
+        /* FEATURED SECTION */
+        .featured-header {
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+            margin: 40px 0 20px;
+        }
+
+        /* VIRTUAL TOUR BANNER */
+        .tour-banner {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://unsplash.com');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+    </style>
 </head>
 
 <body>
 
 <div class="sidebar">
-
-<h2>IronCore</h2>
-
-<a href="indax.html">🏠 Home</a>
-<a href="classes.html">🏋️ Classes</a>
-<a href="trainers.html">👤 Trainers</a>
-<a href="membership.html">💳 Membership</a>
-<a href="gallary.html">📸 Gallery</a>
-<a href="contect.html">📞 Contact</a>
-<a href="accunt.html">👤 Account</a>
-
-<a onclick="logout()">🚪 Logout</a>
-
+    <h2>IRONCORE</h2>
+     <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="classes.html"><i class="fas fa-dumbbell"></i> Classes</a>
+    <a href="trainers.html"><i class="fas fa-user-tie"></i> Trainers</a>
+    <a href="membership.html"><i class="fas fa-credit-card"></i> Membership</a>
+    <a href="gallery.html"><i class="fas fa-camera"></i> Gallery</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+	 <a href="account.html"><i class="fas fa-phone"></i> Account</a>
+    
+   <a onclick="logout.html" style="margin-top: auto; border-top: 1px solid #222;"><i class="fas fa-sign-out-alt"></i> Logout</a>
 </div>
 
 <div class="main">
+    <div class="featured-header">
+        <h1 style="margin:0;">Gym Gallery</h1>
+        <p style="color: var(--text-muted);">Visualize your progress in our world-class facilities.</p>
+    </div>
 
-<h1>Gym Gallery</h1>
+    <!-- FILTER BAR -->
+    <div class="gallery-filter">
+        <div class="filter-btn active">All Photos</div>
+        <div class="filter-btn">Strength Zone</div>
+        <div class="filter-btn">Cardio Deck</div>
+        <div class="filter-btn">Group Classes</div>
+        <div class="filter-btn">Community</div>
+    </div>
 
-<p class="intro">
-Take a look inside IronCore Fitness. Our gallery showcases the gym environment,
-state-of-the-art equipment, training sessions, and the dedication of our fitness community.
-See where strength is built, goals are achieved, and motivation never stops.
-</p>
+    <div class="gallery-grid">
+        <div class="photo-card">
+            <img src="images/weights.jpeg" alt="Weights">
+            <div class="photo-info">
+                <h3>The Power Rack</h3>
+                <p>Olympic-grade racks and platforms for heavy lifting sessions.</p>
+            </div>
+        </div>
 
-<div class="gallery-grid">
+        <div class="photo-card">
+            <img src="images/cardio_zone.jpeg" alt="Cardio">
+            <div class="photo-info">
+                <h3>Endurance Hub</h3>
+                <p>High-tech treadmills with interactive mountain-trail simulations.</p>
+            </div>
+        </div>
 
-<div class="photo-card">
-<img src="mimasour/strengthtraining.jpeg">
-<div class="photo-info">
-<h3>Strength Training Area</h3>
-<p>Our fully equipped weight training section designed for building muscle and improving strength.</p>
-</div>
-</div>
+        <div class="photo-card">
+            <img src="images/yoga.jpeg" alt="Yoga">
+            <div class="photo-info">
+                <h3>Zen Studio</h3>
+                <p>A quiet, climate-controlled space for yoga and mobility flow.</p>
+            </div>
+        </div>
 
-<div class="photo-card">
-<img src="mimasour/cardio_zone.jpeg">
-<div class="photo-info">
-<h3>Cardio Zone</h3>
-<p>Treadmills, bikes, and cardio equipment to help improve endurance and heart health.</p>
-</div>
-</div>
+        <div class="photo-card">
+            <img src="images/coach.jpeg" alt="Trainer">
+            <div class="photo-info">
+                <h3>Elite Coaching</h3>
+                <p>Dedicated 1-on-1 spaces for personalized instruction.</p>
+            </div>
+        </div>
+    </div>
 
-<div class="photo-card">
-<img src="mimasour/group_training.jpeg">
-<div class="photo-info">
-<h3>Group Training</h3>
-<p>Members participate in energetic group workout classes guided by experienced trainers.</p>
-</div>
-</div>
+    <!-- NEW SECTION: VIRTUAL TOUR -->
+    <div class="featured-header">
+        <h2>Experience the Vibe</h2>
+    </div>
+    <div class="tour-banner">
+        <h2 style="font-size: 32px; color: var(--primary);">360° Virtual Tour</h2>
+        <p style="margin-bottom: 20px;">Can't make it in person? Explore the floor from your phone.</p>
+        <button onclick="alert('Virtual Tour Loading...')" style="padding: 12px 30px; background: var(--primary); border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Launch Tour</button>
+    </div>
 
-<div class="photo-card">
-<img src="mimasour/coaching.jpeg">
-<div class="photo-info">
-<h3>Personal Coaching</h3>
-<p>Professional trainers working closely with members to achieve their fitness goals.</p>
-</div>
-</div>
-
-</div>
-
+    <!-- NEW SECTION: INSTAGRAM FEED PREVIEW -->
+    <div class="featured-header" style="margin-top: 60px;">
+        <h2>#IronCoreCommunity</h2>
+        <p style="color: var(--text-muted);">Tagged by our members on Instagram</p>
+    </div>
+    <div class="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+        <div class="photo-card"><img src="https://unsplash.com" style="height: 180px;"></div>
+        <div class="photo-card"><img src="https://unsplash.com" style="height: 180px;"></div>
+        <div class="photo-card"><img src="https://unsplash.com" style="height: 180px;"></div>
+        <div class="photo-card"><img src="https://unsplash.com" style="height: 180px;"></div>
+    </div>
 </div>
 
 <script>
-/* LOGIN PROTECTION */
+    if(localStorage.getItem("fitnessLoggedIn") !== "true") window.location.href="login.html";
 
-if(localStorage.getItem("fitnessLoggedIn") !== "true"){
-window.location.href="fitnesslog.html";
-}
-
-/* DISPLAY USER */
-
-document.getElementById("welcomeUser").innerText =
-"Logged in as: " + localStorage.getItem("fitnessEmail");
-
-
-/* LOGOUT */
-
-function logout(){
-localStorage.removeItem("fitnessLoggedIn");
-window.location.href="fitnesslog.html";
-}
+    function logout(){
+        localStorage.removeItem("fitnessLoggedIn");
+        window.location.href="login.html";
+    }
 </script>
 
 </body>
 </html>
-
